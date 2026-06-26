@@ -161,7 +161,7 @@ body {
  
 #inp input[type='text'] {
   flex: 1;
-  min-width: 1;
+  min-width: 5;
   font-family: var(--font-body);
   font-size: 14.5px;
   padding: 13px 18px;
