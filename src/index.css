@@ -97,7 +97,7 @@ body {
 /* App mount point — works for both CRA (#root) and Vite (#root) */
 #root {
   width: 100%;
-  max-width: 900px;
+  max-width: 660px;
 }
  
 /* The top-level <div> rendered by App.jsx becomes the card */
