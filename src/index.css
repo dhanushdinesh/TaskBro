@@ -156,15 +156,16 @@ body {
 #inp {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+   margin-bottom: 15px
 }
  
 #inp input[type='text'] {
-  flex: 1;
-  min-width: 1;
+  width: 300px;
+  height: 60px; 
   font-family: var(--font-body);
-  font-size: 14.5px;
-  padding: 13px 18px;
+  font-size: 18px;
+  padding: 15px 25px;
   border: 1.5px solid var(--color-border);
   border-radius: var(--radius-pill);
   background: #fbfbfe;
@@ -196,9 +197,10 @@ body {
   flex-shrink: 0;
   font-family: var(--font-body);
   font-weight: 600;
-  font-size: 14px;
+  font-size: 18px;
   color: #ffffff;
-  padding: 13px 42px;
+  width: 150px;
+  height: 60px; 
   border: none;
   border-radius: var(--radius-pill);
   background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
@@ -220,6 +222,7 @@ body {
    Kept small and muted so it reads as a hint rather than a competing headline.
    Consider removing this element from TaskForm.jsx for the cleanest production look. */
 #inp h1 {
+  display: none;
   flex-basis: 100%;
   order: 3;
   font-family: var(--font-body);
