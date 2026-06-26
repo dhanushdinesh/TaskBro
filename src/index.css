@@ -1,0 +1,478 @@
+/* ============================================
+   Task Bro — Design Tokens
+   Friendly-but-premium productivity app theme
+   ============================================ */
+ 
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+ 
+:root {
+  /* Color */
+  --color-bg-start: #666c8b;
+  --color-bg-end: #787187;
+  --color-surface: #302c2c;
+  --color-text: #1f2430;
+  --color-text-muted: #6b7280;
+  --color-text-faint: #9ca3af;
+ 
+  --color-primary: #4f46e5;
+  --color-primary-dark: #4338ca;
+  --color-accent: #7c3aed;
+ 
+  --color-success: #14b8a6;
+  --color-success-dark: #0d9488;
+ 
+  --color-danger: #ef4444;
+  --color-danger-dark: #dc2626;
+ 
+  --color-border: #e7e7f0;
+  --color-track: #eef0f7;
+ 
+  /* Type */
+  --font-display: 'Baloo 2', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+ 
+  /* Shape */
+  --radius-lg: 22px;
+  --radius-md: 14px;
+  --radius-pill: 999px;
+ 
+  /* Elevation */
+  --shadow-card: 0 24px 48px -16px rgba(79, 70, 229, 0.22), 0 4px 10px rgba(15, 23, 42, 0.05);
+  --shadow-soft: 0 2px 8px rgba(15, 23, 42, 0.06);
+  --shadow-soft-hover: 0 8px 16px rgba(15, 23, 42, 0.09);
+}
+ 
+/* ============================================
+   Base
+   ============================================ */
+ 
+* {
+  box-sizing: border-box;
+}
+ 
+/* Pin the page to a light scheme so browsers that auto-darken pages
+   (Chrome/Edge "force dark mode", some Android browsers) don't repaint
+   form controls with their own dark-mode text/background pair — that
+   mismatch is the usual cause of "typed text is invisible" in an input. */
+html {
+  color-scheme: light;
+}
+ 
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: var(--color-bg-end);
+  background-image: url('./bg-image.svg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  padding: 48px 20px;
+}
+ 
+/* To use a real photo instead of the dot pattern, replace the block above
+   with this (swap the url for your own image, kept in the same folder
+   as index.css, or a full https:// path):
+ 
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-image:
+    linear-gradient(135deg, rgba(238,241,255,0.88), rgba(247,243,255,0.88)),
+    url('./bg-photo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  padding: 48px 20px;
+}
+*/
+ 
+/* App mount point — works for both CRA (#root) and Vite (#root) */
+#root {
+  width: 100%;
+  max-width: 660px;
+}
+ 
+/* The top-level <div> rendered by App.jsx becomes the card */
+#root > div {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 36px 32px 32px;
+  position: relative;
+  overflow: hidden;
+}
+ 
+#root > div::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent), var(--color-success));
+}
+ 
+/* ============================================
+   Header
+   ============================================ */
+ 
+#root > div > h1:first-of-type {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin: 4px 0 2px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+ 
+#root > div > h4 {
+  margin: 0 0 28px;
+  font-weight: 500;
+  font-size: 14.5px;
+  color: var(--color-text-muted);
+}
+ 
+#root > div > h4 i {
+  font-style: italic;
+}
+ 
+/* ============================================
+   Task Form
+   ============================================ */
+ 
+.task-form {
+  margin-bottom: 28px;
+}
+ 
+#inp {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+ 
+#inp input[type='text'] {
+  flex: 1;
+  min-width: 1;
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  padding: 13px 18px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background: #fbfbfe;
+  color: var(--color-text) !important;
+  caret-color: var(--color-text);
+  -webkit-text-fill-color: var(--color-text);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+ 
+/* Guards against Chrome's autofill yellow-highlight pass also wiping out
+   text color on this field. */
+#inp input[type='text']:-webkit-autofill {
+  -webkit-text-fill-color: var(--color-text);
+  box-shadow: 0 0 0 1000px #fbfbfe inset;
+}
+ 
+#inp input[type='text']::placeholder {
+  color: var(--color-text-faint);
+}
+ 
+#inp input[type='text']:focus {
+  border-color: var(--color-primary);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.12);
+}
+ 
+#inp button[type='submit'] {
+  flex-shrink: 0;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  color: #ffffff;
+  padding: 13px 42px;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(68, 51, 135, 0.32);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+ 
+#inp button[type='submit']:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(79, 60, 106, 0.38);
+}
+ 
+#inp button[type='submit']:active {
+  transform: translateY(0);
+}
+ 
+/* Live-preview heading rendered inside the form (shows current text/priority/category).
+   Kept small and muted so it reads as a hint rather than a competing headline.
+   Consider removing this element from TaskForm.jsx for the cleanest production look. */
+#inp h1 {
+  flex-basis: 100%;
+  order: 3;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-faint);
+  margin: 10px 0 0;
+}
+ 
+#btns {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+ 
+#btns select {
+  flex: 1;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--color-text);
+  padding: 10px 14px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background: #fbfbfe;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s ease, background 0.15s ease;
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, #9ca3af 50%), linear-gradient(135deg, #9ca3af 50%, transparent 50%);
+  background-position: calc(100% - 18px) center, calc(100% - 13px) center;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+ 
+#btns select:focus {
+  border-color: var(--color-primary);
+  background-color: #ffffff;
+}
+ 
+/* ============================================
+   Task List
+   ============================================ */
+ 
+.task-list {
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+ 
+.task-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  background: #f8f9fd;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-soft);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+ 
+.task-list li:hover {
+  box-shadow: var(--shadow-soft-hover);
+  transform: translateY(-1px);
+}
+ 
+.task-list li > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+ 
+.task-list li span {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--color-text);
+  word-break: break-word;
+}
+ 
+/* Pairs with the `completed` class + ✓ added in Tasklist.jsx */
+.task-list li.completed {
+  background: #f3fbf9;
+  border-color: #d7f0ea;
+}
+ 
+.task-list li.completed span {
+  color: var(--color-success-dark);
+  text-decoration: line-through;
+  text-decoration-color: var(--color-text-faint);
+}
+ 
+.task-list li small {
+  display: inline-block;
+  width: fit-content;
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: var(--color-accent);
+  background: #f1edff;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+}
+ 
+.task-list li > div:last-child {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+ 
+.task-list li button {
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: filter 0.15s ease, transform 0.15s ease;
+}
+ 
+/* Undo / Complete button */
+.task-list li > div:last-child button:first-child {
+  color: var(--color-success-dark);
+  background: #e3f8f5;
+  border-color: #c3eee8;
+}
+ 
+.task-list li > div:last-child button:first-child:hover {
+  filter: brightness(0.96);
+  transform: translateY(-1px);
+}
+ 
+/* Delete button */
+.task-list li > div:last-child button:last-child {
+  color: var(--color-danger-dark);
+  background: #fdecec;
+  border-color: #fad4d4;
+}
+ 
+.task-list li > div:last-child button:last-child:hover {
+  filter: brightness(0.96);
+  transform: translateY(-1px);
+}
+ 
+/* ============================================
+   Progress Tracker
+   ============================================ */
+ 
+.progress-tracker {
+  margin-bottom: 20px;
+}
+ 
+.progress-tracker p {
+  margin: 0 0 10px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+ 
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  border-radius: var(--radius-pill);
+  background: var(--color-track);
+  overflow: hidden;
+}
+ 
+.progress-bar .progress {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, var(--color-success), var(--color-primary));
+  transition: width 0.35s ease;
+}
+ 
+/* ============================================
+   Clear All Tasks
+   ============================================ */
+ 
+.clear-btn {
+  display: block;
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  padding: 13px 0;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(135deg, var(--color-danger), #f97316);
+  cursor: pointer;
+  box-shadow: 0 8px 16px rgba(239, 68, 68, 0.28);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+ 
+.clear-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.03);
+  box-shadow: 0 12px 20px rgba(239, 68, 68, 0.34);
+}
+ 
+.clear-btn:active {
+  transform: translateY(0);
+}
+ 
+/* ============================================
+   Accessibility & responsiveness
+   ============================================ */
+ 
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+ 
+@media (max-width: 480px) {
+  body {
+    padding: 24px 14px;
+  }
+ 
+  #root > div {
+    padding: 28px 20px 24px;
+    border-radius: 18px;
+  }
+ 
+  #inp {
+    flex-wrap: wrap;
+  }
+ 
+  #inp input[type='text'] {
+    flex-basis: 100%;
+  }
+ 
+  #inp button[type='submit'] {
+    flex: 1;
+  }
+ 
+  .task-list li {
+    align-items: flex-start;
+  }
+}
+ 
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
